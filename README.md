@@ -12,6 +12,14 @@ These are utilities commonoly used at The Brookhaven Group, LLC
 $ pip install tbgutils 
 ```
 
+or 
+
+[GitHub](https://github.com/TheBrookhavenGroup/tbgutils)
+
+```shell
+$ pip install  git+https://github.com/TheBrookhavenGroup/tbgutils.git
+```
+
 ### Examples
 
 #### Print the beginning of the next day in local time.
