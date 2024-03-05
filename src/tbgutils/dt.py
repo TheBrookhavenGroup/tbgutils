@@ -24,7 +24,7 @@ def our_localize(t):
 
 
 def to_date(d):
-    if type(d) == str:
+    if type(d) is str:
         if '-' in d:
             d = datetime.date.fromisoformat(d)
         else:
@@ -58,7 +58,7 @@ def set_tz(dt):
 
 
 def yyyymmdd2dt(d):
-    if (type(d) == datetime.datetime) or (type(d) == datetime.date):
+    if (type(d) is datetime.datetime) or (type(d) is datetime.date):
         return d
     d = datetime.datetime.strptime(str(d), '%Y%m%d')
     d = set_tz(d)
@@ -198,6 +198,19 @@ def next_business_day(d):
     d += datetime.timedelta(days=1)
     while is_holiday_observed(d):
         d += datetime.timedelta(days=1)
+    return d
+
+
+def eom(d):
+    """Return last day of month with d in it."""
+    d = datetime.date(d.year, d.month, d.day)
+    m = d.month + 1
+    if m > 12:
+        d = datetime.date(d.year + 1, 1, 1)
+    else:
+        d = datetime.date(d.year, m, 1)
+
+    d -= datetime.timedelta(days=1)
     return d
 
 

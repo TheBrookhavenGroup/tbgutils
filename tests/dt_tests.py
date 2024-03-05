@@ -1,6 +1,6 @@
 import datetime
 import unittest
-from src.tbgutils.dt import is_holiday_observed, yyyymmdd2dt
+from src.tbgutils.dt import is_holiday_observed, yyyymmdd2dt, eom
 
 
 class DTTests(unittest.TestCase):
@@ -121,3 +121,15 @@ class DTTests(unittest.TestCase):
             d = d + datetime.timedelta(days=1)
 
         self.assertTrue(flag)
+
+    def test_eom(self):
+        d = datetime.date(2024, 10, 21)
+        d = eom(d)
+        self.assertEquals(d.month, 10)
+        self.assertEquals(d.day, 31)
+
+        d = datetime.date(2024, 12, 21)
+        d = eom(d)
+        self.assertEquals(d.year, 2024)
+        self.assertEquals(d.month, 12)
+        self.assertEquals(d.day, 31)
